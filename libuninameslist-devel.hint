@@ -1,0 +1,10 @@
+category: Libs
+requires: libuninameslist0
+external-source: libuninameslist
+sdesc: "Unicode NamesList library (development)"
+ldesc: "The Unicode consortium provides a file containing annotations on 
+many unicode characters. This library contains a compiled version of 
+this file so that programs can access these data easily. The library 
+contains a very large (sparse) array with one entry for each unicode 
+code point (U+0000 - U+10FFFF). The library also contains a (much 
+smaller) list of all the Unicode blocks."

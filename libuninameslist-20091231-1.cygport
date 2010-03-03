@@ -1,0 +1,13 @@
+DESCRIPTION="Unicode NamesList library"
+HOMEPAGE="http://libuninameslist.sourceforge.net/"
+SRC_URI="mirror://sourceforge/libuninameslist/${P}.tar.bz2"
+SRC_DIR=${PN}
+
+PATCH_URI="20091231-vpath.patch"
+
+# copy of old libtool macros
+DISTCLEANFILES="aclocal.m4"
+
+PKG_NAMES="${PN} ${PN}0 ${PN}-devel"
+libuninameslist0_CONTENTS="usr/bin/*-0.dll usr/share/doc/"
+libuninameslist_devel_CONTENTS="usr/include/ usr/lib/"
