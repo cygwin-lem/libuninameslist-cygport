@@ -1,0 +1,21 @@
+NAME="libuninameslist"
+VERSION=20091231
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="Unicode NamesList library"
+DESCRIPTION="The Unicode consortium provides a file containing annotations on
+many unicode characters. This library contains a compiled version of this file
+so that programs can access these data easily. The library contains a very
+large (sparse) array with one entry for each unicode code point. The library
+also contains a (much smaller) list of all the Unicode blocks."
+HOMEPAGE="http://libuninameslist.sourceforge.net/"
+SRC_URI="mirror://sourceforge/libuninameslist/${NAME}-${VERSION}.tar.bz2"
+SRC_DIR=${NAME}
+PATCH_URI="20091231-vpath.patch"
+
+PKG_NAMES="${NAME}0 ${NAME}-devel"
+libuninameslist0_CONTENTS="usr/bin/*-0.dll usr/share/doc/"
+libuninameslist_devel_CONTENTS="usr/include/ usr/lib/"
+
+# copy of old libtool macros
+DISTCLEANFILES="aclocal.m4"
