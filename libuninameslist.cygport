@@ -1,5 +1,5 @@
 NAME="libuninameslist"
-VERSION=20091231
+VERSION=20200413p3
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="Unicode NamesList library"
@@ -8,14 +8,67 @@ many unicode characters. This library contains a compiled version of this file
 so that programs can access these data easily. The library contains a very
 large (sparse) array with one entry for each unicode code point. The library
 also contains a (much smaller) list of all the Unicode blocks."
-HOMEPAGE="http://libuninameslist.sourceforge.net/"
-SRC_URI="mirror://sourceforge/libuninameslist/${NAME}-${VERSION}.tar.bz2"
-SRC_DIR=${NAME}
-PATCH_URI="20091231-vpath.patch"
 
-PKG_NAMES="${NAME}0 ${NAME}-devel"
-libuninameslist0_CONTENTS="usr/bin/*-0.dll usr/share/doc/"
-libuninameslist_devel_CONTENTS="usr/include/ usr/lib/"
+################################
+## Settings for 'download'
+################################
+# Source from a git repository
+GIT_REPO="https://github.com/fontforge/libuninameslist"
+declare -A GIT_COMMIT_BY_NAME=(
+  [20200413p3]=5d26f1f514f7fd712d8e8faca0202598b0f0d7d9
+  [20200413]=8cfcc7f9d0a0ab7da34d35d942c5508b890363e0
+)
+GIT_COMMIT="${GIT_COMMIT_BY_NAME[${VERSION}]}"
+echo "${GIT_REPO}"
+echo "commit ${GIT_COMMIT} (${VERSION})"
+GIT_BASENAME="${GIT_REPO##*/}"
+SRC_URI="${GIT_REPO}/archive/${GIT_COMMIT}.tar.gz"
+SRC_DIR="${GIT_BASENAME}-${GIT_COMMIT}"
 
-# copy of old libtool macros
+################################
+## Settings for 'prep'
+################################
+# Apply patches whose filenames are in a default style of 'git format-patch'.
+PATCH_URI=$(\
+  find -maxdepth 1 -type f -name '[0-9][0-9][0-9][0-9]-*.patch' \
+  | sort \
+)
+# And then, additional patches, if any.
+PATCH_URI+="
+"
+# A list of files to be deleted immediately upon unpacking sources
+# (cf. /usr/share/cygport/lib/src_prep.cygpart).
 DISTCLEANFILES="aclocal.m4"
+
+################################
+## Settings for 'compile'
+################################
+# Any options to be passed to 'make' through 'cygmake'
+# (cf. /usr/share/cygport/lib/src_compile.cygpart).
+MAKEOPTS="-j1"  # Avoid running multiple jobs in parallel.
+
+# Additional flags to be passed to 'configure' through 'cygconf'
+# (cf. /usr/share/cygport/cygclass/autotools.cygclass).
+CYGCONF_ARGS="--enable-frenchlib"
+
+################################
+## Settings for 'package'
+################################
+ABI=1
+PKG_NAMES="${PN}${ABI} ${PN}-devel"
+
+printf -v "${PN}${ABI}_CATEGORY" "%s" "${CATEGORY}"
+printf -v "${PN}${ABI}_SUMMARY"  "%s" "${SUMMARY} (runtime)"
+# Runtime libraries only.
+printf -v "${PN}${ABI}_CONTENTS" "%s" "\
+  usr/bin/ \
+"
+
+printf -v "${PN}_devel_CATEGORY" "%s" "Devel ${CATEGORY}"
+printf -v "${PN}_devel_SUMMARY"  "%s" "${SUMMARY} (development)"
+printf -v "${PN}_devel_CONTENTS" "%s" "\
+  usr/include/ \
+  usr/lib/ \
+  usr/share/doc/ \
+  usr/share/man/ \
+"
