@@ -1,6 +1,6 @@
 NAME="libuninameslist"
 VERSION=20091231
-RELEASE=1
+RELEASE=2
 CATEGORY="Libs"
 SUMMARY="Unicode NamesList library"
 DESCRIPTION="The Unicode consortium provides a file containing annotations on
@@ -14,8 +14,8 @@ SRC_DIR=${NAME}
 PATCH_URI="20091231-vpath.patch"
 
 PKG_NAMES="${NAME}0 ${NAME}-devel"
-libuninameslist0_CONTENTS="usr/bin/*-0.dll usr/share/doc/"
-libuninameslist_devel_CONTENTS="usr/include/ usr/lib/"
+libuninameslist0_CONTENTS="usr/bin/*-0.dll"
+libuninameslist_devel_CONTENTS="usr/include/ usr/lib/ usr/share/doc/"
 
 # copy of old libtool macros
 DISTCLEANFILES="aclocal.m4"
