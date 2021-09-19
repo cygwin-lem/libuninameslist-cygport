@@ -15,16 +15,17 @@ HOMEPAGE="https://github.com/fontforge/libuninameslist/releases"
 ################################
 # Source from a git repository
 GIT_REPO="https://github.com/fontforge/libuninameslist"
-declare -A GIT_COMMIT_BY_NAME=(
-  [20200413p3]=5d26f1f514f7fd712d8e8faca0202598b0f0d7d9
-  [20200413]=8cfcc7f9d0a0ab7da34d35d942c5508b890363e0
+declare -A GIT_DATEHASH_BY_NAME=(
+  # git log --date=iso-strict --format='%cd/%H' -1
+  [20200413p3]=2020-06-26T09:11:42-07:00/5d26f1f514f7fd712d8e8faca0202598b0f0d7d9
+  [20200413]=2020-04-13T12:13:13-07:00/20200413
 )
-GIT_COMMIT="${GIT_COMMIT_BY_NAME[${VERSION}]}"
-echo "${GIT_REPO}"
-echo "commit ${GIT_COMMIT} (${VERSION})"
+REV_HASH="${GIT_DATEHASH_BY_NAME[${VERSION}]#*/}"
+REV_DATE="${GIT_DATEHASH_BY_NAME[${VERSION}]%%/*}"
+REV_DATE_SHORT="${REV_DATE%%T*}"
 GIT_BASENAME="${GIT_REPO##*/}"
-SRC_URI="${GIT_REPO}/archive/${GIT_COMMIT}.tar.gz"
-SRC_DIR="${GIT_BASENAME}-${GIT_COMMIT}"
+SRC_URI="${GIT_REPO}/archive/${REV_HASH}/${GIT_BASENAME}-${VERSION}.tar.gz"
+SRC_DIR="${GIT_BASENAME}-${REV_HASH#v}"
 
 ################################
 ## Settings for 'prep'
