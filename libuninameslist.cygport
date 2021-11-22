@@ -17,7 +17,7 @@ HOMEPAGE="https://github.com/fontforge/libuninameslist/releases"
 GIT_REPO="https://github.com/fontforge/libuninameslist"
 declare -A GIT_DATEHASH_BY_NAME=(
   # git log --date=iso-strict --format='%cd/%H' -1
-  [20210917]=2021-09-17T15:45:15-07:00/e4b2fc96e2b212576314d76e55bac50491274ac3
+  [20210917]=2021-09-17T15:45:15-07:00/20210917
   [20200413p3]=2020-06-26T09:11:42-07:00/5d26f1f514f7fd712d8e8faca0202598b0f0d7d9
   [20200413]=2020-04-13T12:13:13-07:00/20200413
 )
