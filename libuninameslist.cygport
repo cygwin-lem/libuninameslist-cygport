@@ -1,5 +1,5 @@
 NAME="libuninameslist"
-VERSION=20211114
+VERSION=20220701
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="Unicode NamesList library"
@@ -17,6 +17,7 @@ HOMEPAGE="https://github.com/fontforge/libuninameslist/releases"
 GIT_REPO="https://github.com/fontforge/libuninameslist"
 declare -A GIT_DATEHASH_BY_NAME=(
   # git log --date=iso-strict --format='%cd/%H' -1
+  [20220701]=2022-07-01T19:05:04-07:00/20220701
   [20211114]=2021-11-14T00:36:12-08:00/20211114
   [20210917]=2021-09-17T15:45:15-07:00/20210917
   [20200413p3]=2020-06-26T09:11:42-07:00/5d26f1f514f7fd712d8e8faca0202598b0f0d7d9
