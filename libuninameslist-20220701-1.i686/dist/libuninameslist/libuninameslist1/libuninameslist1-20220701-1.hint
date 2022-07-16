@@ -1,0 +1,10 @@
+category: Libs
+requires: cygwin 
+sdesc: "Unicode NamesList library (runtime)"
+ldesc: "The Unicode consortium provides a file containing annotations on
+many unicode characters. This library contains a compiled version of this file
+so that programs can access these data easily. The library contains a very
+large (sparse) array with one entry for each unicode code point. The library
+also contains a (much smaller) list of all the Unicode blocks."
+external-source: libuninameslist
+test:
