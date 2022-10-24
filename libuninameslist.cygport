@@ -10,6 +10,10 @@ large (sparse) array with one entry for each unicode code point. The library
 also contains a (much smaller) list of all the Unicode blocks."
 HOMEPAGE="https://github.com/fontforge/libuninameslist/releases"
 
+LICENSE="BSD-3-Clause"
+# cf. https://www.cygwin.com/packaging-hint-files.html#pvr-src.hint
+#     https://spdx.org/licenses/BSD-3-Clause.html
+
 ################################
 ## Settings for 'download'
 ################################
